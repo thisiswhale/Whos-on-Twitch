@@ -10,52 +10,38 @@ let channels = [
   "RobotCaleb",
   "noobs2ninjas"
 ];
-let usersOnline = [];
-let usersData = [];
-function getTwitch() {
-  for (let i = 0; i < channels.length; i++) {
-    //fetch data for display name, status, and profile
-    fetch('https://api.twitch.tv/kraken/channels/' + channels[i] + '?client_id=8x7lfisepsjsqcdvzuaclgudhigsv7').then(response => response.json()).then(data => {
-      usersData.push({display_name: data.display_name, status: data.status, livestatus: "", image: data.logo})
 
-      fetch('https://api.twitch.tv/kraken/streams/' + channels[i] + '?client_id=8x7lfisepsjsqcdvzuaclgudhigsv7').then(response => response.json()).then(data => {
-        (data.stream == null)
-          ? usersData[i].livestatus = 'Offline'
-          : usersData[i].livestatus = 'Online'
-      });
-    });
-  }
-  Render(usersData);
-}
-getTwitch();
+let usersData = [];
 
 const all = document.querySelector('#all');
 const online = document.querySelector('#online');
 const offline = document.querySelector('#offline');
 
-function Render(data) {
-  console.log(data);
-  for(let key in data){
-    console.log(key)
-  }
-  const dataRender = data.map(user => `
-  <div class='users ${ (user.livestatus == 'Online') ? 'online': 'offline'}'>
-    <img class="profile-image" src="${user.image}" alt="">
-    <span class='display-name'>${user.display_name}</span>
-    <i class="fa fa-bolt" aria-hidden="true"></i>
-  </div>
-`).join('');
+for (let i = 0; i < channels.length; i++) {
+  //fetch data for display name, status, and profile
+  fetch('https://api.twitch.tv/kraken/channels/' + channels[i] + '?client_id=8x7lfisepsjsqcdvzuaclgudhigsv7').then(response => response.json()).then(data => {
+    usersData.push({display_name: data.display_name, status: data.status, livestatus: "", image: data.logo, url: data.url})
 
-  document.querySelector('#all').innerHTML = dataRender;
-}
-function renderResults(data) {
-  const dataRender = data.map(result => `
-      <div class='result-box'>
-         <h3 class='result-title'
-           onclick="location.href='https://en.wikipedia.org/?curid=${result.pageid}'" data-key="${result.pageid}">${result.title}
-         </h3>
-         <p class='result-extract'>${result.extract}</p>
-    </div>`).join('');
-  list.innerHTML = dataRender;
-  document.querySelector('#render-box').style.opacity = "1";
+    fetch('https://api.twitch.tv/kraken/streams/' + channels[i] + '?client_id=8x7lfisepsjsqcdvzuaclgudhigsv7').then(response => response.json()).then(data => {
+      (data.stream == null) ? usersData[i].livestatus = 'Offline' : usersData[i].livestatus = 'Online';
+
+      let render = `
+            <img class="profile-image" src="${usersData[i].image}" alt="">
+            <span class='display-name' onclick="location.href='${usersData[i].url}'" >${usersData[i].display_name}</span>
+            <span class='display-status'>${usersData[i].status}</span>
+            ${ (usersData[i].livestatus == 'Online')? '<i class="fa fa-bolt" aria-hidden="true"></i>': '<i class="fa fa-times" aria-hidden="true"></i>'}
+        `;
+      //note: we are creating a node, so it can be used once, else error
+      let newDiv1 = document.createElement("div");
+        newDiv1.setAttribute('class', `users ${ (usersData[i].livestatus == 'Online')? 'online': 'offline'}`);
+        newDiv1.innerHTML = render;
+      all.appendChild(newDiv1);
+      //create a duplicate
+      let newDiv2 = document.createElement("div");
+        newDiv2.setAttribute('class', `users ${ (usersData[i].livestatus == 'Online')? 'online': 'offline'}`);
+        newDiv2.innerHTML = render;
+      (usersData[i].livestatus == 'Online')? online.appendChild(newDiv2) : offline.appendChild(newDiv2);
+
+    });
+  });
 }
