@@ -16,6 +16,10 @@ let usersData = [];
 const all = document.querySelector('#all');
 const online = document.querySelector('#online');
 const offline = document.querySelector('#offline');
+const searchInput = document.querySelector('input');
+// searchInput.addEventListener('change', displayMatches);
+// searchInput.addEventListener('keyup', displayMatches);
+
 
 for (let i = 0; i < channels.length; i++) {
   //fetch data for display name, status, and profile
@@ -29,16 +33,16 @@ for (let i = 0; i < channels.length; i++) {
             <img class="profile-image" src="${usersData[i].image}" alt="">
             <span class='display-name' onclick="location.href='${usersData[i].url}'" >${usersData[i].display_name}</span>
             <span class='display-status'>${usersData[i].status}</span>
-            ${ (usersData[i].livestatus == 'Online')? '<i class="fa fa-bolt" aria-hidden="true"></i>': '<i class="fa fa-times" aria-hidden="true"></i>'}
+            ${ (usersData[i].livestatus == 'Online')? '<i class="fa fa-bolt fa-lg" aria-hidden="true"></i>': '<i class="fa fa-times fa-lg" aria-hidden="true"></i>'}
         `;
       //note: we are creating a node, so it can be used once, else error
       let newDiv1 = document.createElement("div");
-        newDiv1.setAttribute('class', `users ${ (usersData[i].livestatus == 'Online')? 'online': 'offline'}`);
+        newDiv1.setAttribute('class', `streamer ${ (usersData[i].livestatus == 'Online')? 'online': 'offline'}`);
         newDiv1.innerHTML = render;
       all.appendChild(newDiv1);
       //create a duplicate
       let newDiv2 = document.createElement("div");
-        newDiv2.setAttribute('class', `users ${ (usersData[i].livestatus == 'Online')? 'online': 'offline'}`);
+        newDiv2.setAttribute('class', `streamer ${ (usersData[i].livestatus == 'Online')? 'online': 'offline'}`);
         newDiv2.innerHTML = render;
       (usersData[i].livestatus == 'Online')? online.appendChild(newDiv2) : offline.appendChild(newDiv2);
 
