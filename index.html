@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,25 @@
   <link rel="stylesheet" href="style.css">
   <title>Who's on Twitch?</title>
 </head>
+
 <body>
   <div id='main'>
+    <div class="tab-bar">
+      <button class="tab-bar-item" onclick="openTab(event,'all')">All</button>
+      <button class="tab-bar-item" onclick="openTab(event,'online')">Online</button>
+      <button class="tab-bar-item" onclick="openTab(event,'offline')">Offline</button>
+    </div>
     <input type="text" placeholder="&#xF002;" style="font-family:Arial, FontAwesome">
-    <div id='all'>
+    <div id='all' class='tab' style="display:block">
     </div>
-    <div id='online'>
+    <div id='online' class='tab' style="display:none">
     </div>
-    <div id='offline'>
+    <div id='offline' class='tab' style="display:none">
     </div>
   </div>
 
-<script src="https://use.fontawesome.com/135d5297a1.js"></script>
+  <script src="https://use.fontawesome.com/135d5297a1.js"></script>
   <script type="text/javascript" src="script.js"></script>
 </body>
+
 </html>

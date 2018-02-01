@@ -31,7 +31,7 @@ for (let i = 0; i < channels.length; i++) {
 
       let render = `
             <img class="profile-image" src="${usersData[i].image}" alt="">
-            <span class='display-name' onclick="location.href='${usersData[i].url}'" >${usersData[i].display_name}</span>
+            <span class='display-name' onclick="location.href='${usersData[i].url}'" >${usersData[i].display_name}</span><br>
             <span class='display-status'>${usersData[i].status}</span>
             ${ (usersData[i].livestatus == 'Online')? '<i class="fa fa-bolt fa-lg" aria-hidden="true"></i>': '<i class="fa fa-times fa-lg" aria-hidden="true"></i>'}
         `;
@@ -48,4 +48,18 @@ for (let i = 0; i < channels.length; i++) {
 
     });
   });
+}
+
+function openTab(event, tabName) {
+
+    let x = document.getElementsByClassName("tab");
+    for (let i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+    let tablinks = document.getElementsByClassName("tab-bar-item");
+    for (i = 0; i < x.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" tab-active", "");
+    }
+    event.currentTarget.className += " tab-active";
 }
