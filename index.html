@@ -6,26 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,700" rel="stylesheet">
+  <script src="https://use.fontawesome.com/135d5297a1.js"></script>
   <title>Who's on Twitch?</title>
 </head>
 
 <body>
-  <div id='main'>
+  <div class='main'>
+    <h1>Who's Streaming?</h1>
     <div class="tab-bar">
-      <button class="tab-bar-item" onclick="openTab(event,'all')">All</button>
-      <button class="tab-bar-item" onclick="openTab(event,'online')">Online</button>
-      <button class="tab-bar-item" onclick="openTab(event,'offline')">Offline</button>
+      <button class="tab-bar-item tab-active" data-key='all' onclick="openTab(event,'all')">ALL</button>
+      <button class="tab-bar-item" data-key='online' onclick="openTab(event,'online')">ONLINE</button>
+      <button class="tab-bar-item" data-key='offline' onclick="openTab(event,'offline')">OFFLINE</button>
     </div>
-    <input type="text" placeholder="&#xF002;" style="font-family:Arial, FontAwesome">
-    <div id='all' class='tab' style="display:block">
+    <input type="text" placeholder="&#xF002;" style="font-family:'Josefin Sans', FontAwesome">
+    <div id='all' class='tab ' style="display:block">
     </div>
     <div id='online' class='tab' style="display:none">
     </div>
     <div id='offline' class='tab' style="display:none">
     </div>
   </div>
-
-  <script src="https://use.fontawesome.com/135d5297a1.js"></script>
   <script type="text/javascript" src="script.js"></script>
 </body>
 

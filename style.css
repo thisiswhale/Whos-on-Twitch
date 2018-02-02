@@ -2,11 +2,23 @@ html, body {
   padding: 0;
   margin: 0;
   height: 100%;
+  background-color: #19171c;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-#main {
-  margin: 15% auto;
+h1 {
+  margin: auto;
+  text-align: center;
+  color: #fff;
+  background-color: #19171c;
+  padding: 10px;
+  font-size: 40px;
+}
+
+.main {
+  margin: 5% auto;
   width: 50%;
+  background-color: #6441a4;
 }
 
 input {
@@ -19,11 +31,14 @@ input {
 
 .streamer {
   padding: 7px;
-  border: black 3px solid;
+  border: grey 3px solid;
   height: 75px;
   margin-top: -2px;
   margin-bottom: -2px;
-
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: white;
 }
 
 img {
@@ -32,27 +47,32 @@ img {
   border: black 3px solid;
   border-radius: 25px;
   display: block;
-  float:left
+  float: left
+}
 
+p {
+  word-wrap: break-word;
+  width: auto;
+  height: auto;
 }
-span{
-    word-wrap: break-word
-}
+
 .display-name, .display-status {
   display: inline-block;
-
-  float:left;
+  float: left;
   padding-left: 5px;
 }
 
 .display-name {
   font-weight: bold;
+  cursor: pointer;
+}
 
+.display-name:hover {
+  text-decoration: underline;
 }
 
 .display-status {
   font-style: italic;
-
 }
 
 i {
@@ -61,19 +81,22 @@ i {
   width: 20px;
   height: 20px;
   margin: 0 auto;
-  float:right;
-
+  float: right;
 }
 
 .tab-bar .tab-bar-item {
   margin-bottom: 5%;
-  padding: 8px 16px;
+  padding: 10px 16px 8px 16px;
   float: left;
-  width: 33%;
+  width: 33.33%;
   border: none;
-
+  font-size: 17px;
 }
 
-button.tab-bar-item.tab-active{
-  background-color: red;
+button {
+  font-family: inherit;
+}
+
+button.tab-bar-item.tab-active {
+  background-color: #0e9bd8;
 }
