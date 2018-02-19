@@ -1,6 +1,6 @@
 # Whos on Twitch?
 
-I can get all all my twitch streamers from Twitch's API and they are sorted in their respective 'All', 'Online', and 'Offline' tabs. I can search for a certain streamer under the tab I selected. I can click on them to see a streamer's home twitch page.
+I can get all my twitch streamers from Twitch's API and they are sorted in their respective 'All', 'Online', and 'Offline' tabs. I can search for a certain streamer under the tab I selected. I can click on them to see a streamer's home twitch page.
 
 *Note: Twitch API will be deprecated in late 2018.*
 
